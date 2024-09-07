@@ -4,11 +4,17 @@
   "description": "A web app for inventory management",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "echo 'No build step required' && exit 0"
   },
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.10.9",
     "ejs": "^3.1.6"
-  }
+  },
+  "engines": {
+    "node": ">=14.x"
+  },
+  "author": "",
+  "license": "ISC"
 }
