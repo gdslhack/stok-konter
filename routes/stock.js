@@ -27,8 +27,6 @@ router.post('/add-product', async (req, res) => {
   }
 });
 
-// Existing routes
-
 // Route untuk menambahkan stok baru
 router.post('/stock-in', async (req, res) => {
   try {
