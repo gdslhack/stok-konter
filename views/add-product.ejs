@@ -4,44 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
-  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <header>
     <h1><%= header %></h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/stock">Stock</a>
-      <a href="/inventory">Inventory</a>
-      <a href="/warnings">Warnings</a>
-      <a href="/opname">Opname</a>
-      <a href="/profit">Profit</a>
-      <a href="/add-product">Add Product</a>
-    </nav>
   </header>
   <main>
-    <h2>Add New Product</h2>
-    <form action="/add-product" method="post">
-      <label for="name">Product Name:</label>
-      <input type="text" id="name" name="name" required>
+    <form action="/stock/add-product" method="post">
+      <label for="name">Nama Produk:</label>
+      <input type="text" id="name" name="name" required><br><br>
       
-      <label for="purchasePrice">Purchase Price:</label>
-      <input type="number" id="purchasePrice" name="purchasePrice" step="0.01" required>
+      <label for="purchasePrice">Harga Beli:</label>
+      <input type="number" id="purchasePrice" name="purchasePrice" required><br><br>
       
-      <label for="sellingPrice">Selling Price:</label>
-      <input type="number" id="sellingPrice" name="sellingPrice" step="0.01" required>
+      <label for="sellingPrice">Harga Jual:</label>
+      <input type="number" id="sellingPrice" name="sellingPrice" required><br><br>
       
-      <label for="safeStock">Safe Stock Level:</label>
-      <input type="number" id="safeStock" name="safeStock" required>
+      <label for="safeStock">Stok Aman:</label>
+      <input type="number" id="safeStock" name="safeStock" required><br><br>
       
-      <label for="dangerousStock">Dangerous Stock Level:</label>
-      <input type="number" id="dangerousStock" name="dangerousStock" required>
+      <label for="dangerousStock">Stok Tidak Aman:</label>
+      <input type="number" id="dangerousStock" name="dangerousStock" required><br><br>
       
-      <label for="type">Product Type:</label>
-      <select id="type" name="type" required>
+      <label for="type">Tipe Produk:</label>
+      <select id="type" name="type">
         <option value="voucher">Voucher</option>
-        <option value="accessory">Accessory</option>
-      </select>
+        <option value="accessory">Aksesoris</option>
+      </select><br><br>
       
       <button type="submit">Add Product</button>
     </form>
