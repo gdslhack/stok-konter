@@ -3,6 +3,32 @@ const router = express.Router();
 const Stock = require('../models/stock');
 const Product = require('../models/product');
 
+// Route untuk menampilkan formulir input produk
+router.get('/add-product', (req, res) => {
+  res.render('add-product', { title: 'Add Product', header: 'Add New Product' });
+});
+
+// Route untuk menangani pengiriman formulir input produk
+router.post('/add-product', async (req, res) => {
+  try {
+    const { name, purchasePrice, sellingPrice, safeStock, dangerousStock, type } = req.body;
+    const product = new Product({
+      name,
+      purchasePrice,
+      sellingPrice,
+      safeStock,
+      dangerousStock,
+      type
+    });
+    await product.save();
+    res.redirect('/inventory'); // Redirect ke halaman lain setelah berhasil menambah produk
+  } catch (error) {
+    res.status(500).send('Error adding product');
+  }
+});
+
+// Existing routes
+
 // Route untuk menambahkan stok baru
 router.post('/stock-in', async (req, res) => {
   try {
