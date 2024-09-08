@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1><%= header %></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/stock">Stock</a>
+      <a href="/inventory">Inventory</a>
+      <a href="/warnings">Warnings</a>
+      <a href="/opname">Opname</a>
+      <a href="/profit">Profit</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Stock List</h2>
+    <!-- Example Table for Stock Data -->
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (stocks && stocks.length > 0) { %>
+          <% stocks.forEach(stock => { %>
+            <tr>
+              <td><%= stock.productName %></td>
+              <td><%= stock.quantity %></td>
+              <td><%= stock.price %></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="3">No stock data available.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
