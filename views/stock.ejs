@@ -20,7 +20,7 @@
   </header>
   <main>
     <h2>Stock List</h2>
-    <!-- Example Table for Stock Data -->
+    <!-- Table for Stock Movements -->
     <table>
       <thead>
         <tr>
@@ -43,6 +43,35 @@
         <% } else { %>
           <tr>
             <td colspan="4">No stock data available.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+
+    <!-- Table for Remaining Stock -->
+    <h2>Remaining Stock</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Stock In</th>
+          <th>Stock Out</th>
+          <th>Remaining Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (remainingStock && remainingStock.length > 0) { %>
+          <% remainingStock.forEach(item => { %>
+            <tr>
+              <td><%= item.product.name %></td>
+              <td><%= item.stockIn %></td>
+              <td><%= item.stockOut %></td>
+              <td><%= item.netStock %></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="4">No remaining stock data available.</td>
           </tr>
         <% } %>
       </tbody>
