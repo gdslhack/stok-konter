@@ -33,7 +33,7 @@ router.post('/stock-in', async (req, res) => {
     const { productId, quantity } = req.body;
     const stock = new Stock({ productId, quantity, type: 'in' });
     await stock.save();
-    res.redirect('/inventory');
+    res.redirect('/stock'); // Redirect ke halaman stok setelah berhasil menambah stok
   } catch (error) {
     res.status(500).send('Error saving stock');
   }
@@ -45,7 +45,7 @@ router.post('/stock-out', async (req, res) => {
     const { productId, quantity } = req.body;
     const stock = new Stock({ productId, quantity, type: 'out' });
     await stock.save();
-    res.redirect('/inventory');
+    res.redirect('/stock'); // Redirect ke halaman stok setelah berhasil mengurangi stok
   } catch (error) {
     res.status(500).send('Error saving stock');
   }
@@ -54,9 +54,35 @@ router.post('/stock-out', async (req, res) => {
 // Route untuk menampilkan data stock
 router.get('/', async (req, res) => {
   try {
-    // Mengambil data stok dari database
+    // Mengambil data stok dan produk dari database
     const stocks = await Stock.find().populate('productId');
-    res.render('stock', { title: 'Stock Page', header: 'Stock', stocks });
+    const products = await Product.find();
+
+    // Calculate remaining stock for each product
+    const remainingStock = products.map(product => {
+      const stockIn = stocks
+        .filter(stock => stock.productId.equals(product._id) && stock.type === 'in')
+        .reduce((total, stock) => total + stock.quantity, 0);
+
+      const stockOut = stocks
+        .filter(stock => stock.productId.equals(product._id) && stock.type === 'out')
+        .reduce((total, stock) => total + stock.quantity, 0);
+
+      const netStock = stockIn - stockOut;
+
+      return {
+        product,
+        stockIn,
+        stockOut,
+        netStock
+      };
+    });
+
+    res.render('stock', {
+      title: 'Stock Page',
+      header: 'Stock',
+      remainingStock
+    });
   } catch (error) {
     res.status(500).send('Error retrieving stock data');
   }
