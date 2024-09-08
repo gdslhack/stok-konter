@@ -23,12 +23,13 @@ app.set('view engine', 'ejs');
 // Routes
 const stockRoutes = require('./routes/stock');
 const inventoryRoutes = require('./routes/inventory');
+const warningsRoutes = require('./routes/warnings'); // Ensure this is correct
 const opnameRoutes = require('./routes/opname');
 const profitRoutes = require('./routes/profit');
 
 app.use('/stock', stockRoutes);
 app.use('/inventory', inventoryRoutes);
-app.use('/warnings', warningsRoutes);
+app.use('/warnings', warningsRoutes); // Use the imported routes
 app.use('/opname', opnameRoutes);
 app.use('/profit', profitRoutes);
 
