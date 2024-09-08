@@ -19,15 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); // Set views directory
 
-// Routes
+// Import routes
 const stockRoutes = require('./routes/stock');
 const inventoryRoutes = require('./routes/inventory');
 const warningsRoutes = require('./routes/warnings');
 const opnameRoutes = require('./routes/opname');
 const profitRoutes = require('./routes/profit');
 
-// Define routes
+// Use routes
 app.use('/stock', stockRoutes);
 app.use('/inventory', inventoryRoutes);
 app.use('/warnings', warningsRoutes);
