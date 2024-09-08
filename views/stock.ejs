@@ -26,21 +26,23 @@
         <tr>
           <th>Product</th>
           <th>Quantity</th>
-          <th>Price</th>
+          <th>Type</th>
+          <th>Date</th>
         </tr>
       </thead>
       <tbody>
         <% if (stocks && stocks.length > 0) { %>
           <% stocks.forEach(stock => { %>
             <tr>
-              <td><%= stock.productName %></td>
+              <td><%= stock.productId.name %></td>
               <td><%= stock.quantity %></td>
-              <td><%= stock.price %></td>
+              <td><%= stock.type %></td>
+              <td><%= stock.date.toDateString() %></td>
             </tr>
           <% }) %>
         <% } else { %>
           <tr>
-            <td colspan="3">No stock data available.</td>
+            <td colspan="4">No stock data available.</td>
           </tr>
         <% } %>
       </tbody>
