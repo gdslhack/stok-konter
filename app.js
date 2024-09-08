@@ -23,18 +23,20 @@ app.set('view engine', 'ejs');
 // Routes
 const stockRoutes = require('./routes/stock');
 const inventoryRoutes = require('./routes/inventory');
-const warningsRoutes = require('./routes/warnings'); // Ensure this is correct
+const warningsRoutes = require('./routes/warnings');
 const opnameRoutes = require('./routes/opname');
 const profitRoutes = require('./routes/profit');
 
+// Define routes
 app.use('/stock', stockRoutes);
 app.use('/inventory', inventoryRoutes);
-app.use('/warnings', warningsRoutes); // Use the imported routes
+app.use('/warnings', warningsRoutes);
 app.use('/opname', opnameRoutes);
 app.use('/profit', profitRoutes);
 
+// Home route
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { title: 'Dashboard', header: 'Dashboard' });
 });
 
 // Start server
