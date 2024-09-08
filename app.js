@@ -23,7 +23,6 @@ app.set('view engine', 'ejs');
 // Routes
 const stockRoutes = require('./routes/stock');
 const inventoryRoutes = require('./routes/inventory');
-const warningsRoutes = require('./routes/warnings');
 const opnameRoutes = require('./routes/opname');
 const profitRoutes = require('./routes/profit');
 
